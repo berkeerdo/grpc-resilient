@@ -111,7 +111,7 @@ export abstract class GatewayGrpcClient<
     this.config = {
       ...GATEWAY_DEFAULT_CONFIG,
       ...clientConfig,
-    } as typeof this.config;
+    };
     this.logger = logger;
     this.metricsTracker = new GatewayMetricsTracker();
   }
@@ -327,7 +327,7 @@ export abstract class GatewayGrpcClient<
     const packageParts = this.config.packageName.split('.');
     let current: grpc.GrpcObject = proto;
     for (const part of packageParts) {
-      const next = this.safeGetProperty<grpc.GrpcObject>(current as Record<string, unknown>, part);
+      const next = this.safeGetProperty<grpc.GrpcObject>(current, part);
       if (!next) {
         throw new Error(`Package part '${part}' not found in proto`);
       }
@@ -335,7 +335,7 @@ export abstract class GatewayGrpcClient<
     }
 
     const ServiceClass = this.safeGetProperty<grpc.ServiceClientConstructor>(
-      current as Record<string, unknown>,
+      current,
       this.config.serviceClassName
     );
     if (!ServiceClass) {

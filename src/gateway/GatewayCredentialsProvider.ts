@@ -167,7 +167,7 @@ function createTlsCredentials(options: TlsCredentialsOptions): grpc.ChannelCrede
     );
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`Failed to load TLS certificates: ${message}`);
+    throw new Error(`Failed to load TLS certificates: ${message}`, { cause: error });
   }
 }
 

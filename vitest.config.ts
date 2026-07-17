@@ -14,9 +14,12 @@ export default defineConfig({
         // ResilientGrpcClient has many connection methods that require
         // real gRPC server for testing. Unit tests cover utilities 100%.
         // Integration tests (when enabled) provide full coverage.
+        // Thresholds recalibrated for Vitest 4: AST-aware V8 remapping
+        // reports different function/branch percentages than Vitest 2
+        // for the same test suite.
         lines: 50,
-        functions: 70,
-        branches: 60,
+        functions: 55,
+        branches: 45,
         statements: 50,
       },
     },

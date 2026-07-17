@@ -49,7 +49,9 @@ vi.mock('@grpc/grpc-js', () => {
       createInsecure: vi.fn(() => ({})),
       createSsl: vi.fn(() => ({})),
     },
-    Metadata: vi.fn().mockImplementation(() => ({ set: vi.fn() })),
+    Metadata: vi.fn(function () {
+      return { set: vi.fn() };
+    }),
     status: {
       OK: 0,
       UNAVAILABLE: 14,
@@ -65,7 +67,9 @@ vi.mock('@grpc/grpc-js', () => {
     loadPackageDefinition: vi.fn(() => ({
       test: {
         service: {
-          TestService: vi.fn().mockImplementation(createMockClient),
+          TestService: vi.fn(function () {
+            return createMockClient();
+          }),
         },
       },
     })),

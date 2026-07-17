@@ -91,7 +91,7 @@ export abstract class ResilientGrpcClient<
     }
 
     this.logger = config.logger;
-    this.config = { ...DEFAULT_CONFIG, ...config } as InternalConfig;
+    this.config = { ...DEFAULT_CONFIG, ...config };
     this.metricsTracker = new MetricsTracker();
     this.fallbackCache = new FallbackCache(
       config.serviceName,
